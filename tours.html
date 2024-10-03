@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="icon" href="/images/znakkr.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/images/znakkr.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Туры</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('../images2/BolshlZnak.jpg'); /* Путь к вашему изображению */
+            background-size: cover; /* Изображение будет масштабироваться по размеру контейнера */
+            background-repeat: no-repeat; /* Не повторять изображение */
+            background-position: top; /* Изображение будет фиксировано сверху */
+            background-color: #000001; /* Цвет фона черный */
+            color: #f0f0f0; /* Цвет текста на странице */
+            font-family: 'Oswald', sans-serif; /* Шрифт для текста */
+            min-height: 100vh; /* Минимальная высота для фона изображения - 100% экрана */
+        }
+
+        .black-background {
+            background-color: #000001; /* Черный фон */
+            width: 100%; /* Ширина блока 100% */
+            height: auto; /* Высота блока будет зависеть от контента */
+            padding-bottom: 100px; /* Отступ снизу для доп. пространства */
+        }
+
+        .tour-cards {
+            padding: 200px 0 50px; /* Уменьшен верхний отступ для смещения туров */
+        }
+
+        .card {
+            border: none;
+            background-color: transparent; /* Сделан прозрачным для видимости фона */
+            margin-bottom: 20px;
+            padding: 0;
+        }
+
+        .card-info {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .tour-date {
+            width: 80px;
+            height: 80px;
+            background-color: #f8f9fa;
+            color: #000;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        .tour-date div {
+            line-height: 1.2;
+        }
+
+        .tour-date div:first-child {
+            font-size: 20px;
+        }
+
+        .tour-location {
+            text-transform: uppercase; /* Приводит текст к верхнему регистру */
+            flex-grow: 1; /* Позволяет элементу занимать оставшееся пространство */
+            background-color: #f8f9fa; /* Цвет фона ячейки */
+            padding: 10px; /* Отступ внутри ячейки */
+            border-radius: 5px; /* Закругление углов */
+            display: flex; /* Использование flexbox для размещения содержимого */
+            flex-direction: column; /* Расположение содержимого по вертикали */
+            justify-content: center; /* Центрирование содержимого по вертикали */
+            align-items: center; /* Центрирование содержимого по горизонтали */
+            font-size: 16px; /* Размер шрифта */
+            color: #000000; /* Цвет текста */
+            width: 200px; /* Ширина ячейки */
+            height: 80px; /* Высота ячейки */
+        }
+
+        .tour-location strong {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .tour-location span {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .tour-ticket {
+            background-color: #f8f9fa; /* Цвет фона кнопки */
+            border: none; /* Убирает рамку */
+            width: 120px; /* Ширина кнопки */
+            color: #000; /* Цвет текста кнопки */
+            font-size: 16px; /* Размер шрифта */
+            font-weight: bold; /* Жирный шрифт */
+            font-family: 'Oswald', sans-serif; /* Шрифт для текста */
+            padding: 10px; /* Внутренние отступы кнопки */
+            text-align: center; /* Центрирование текста */
+            border-radius: 5px; /* Закругление углов кнопки */
+            white-space: nowrap; /* Запрет на перенос текста */
+            margin-left: 15px; /* Отступ слева */
+            height: 80px; /* Высота кнопки */
+            display: flex; /* Использование flexbox для размещения содержимого */
+            justify-content: center; /* Центрирование содержимого по горизонтали */
+            align-items: center; /* Центрирование содержимого по вертикали */
+        }
+
+        .tour-ticket:hover {
+            background-color: #d3d3d3; /* Цвет фона при наведении на кнопку */
+        }
+
+        /* Меню бургер */
+        .menu {
+            position: fixed; /* Фиксированное положение */
+            top: 10px; /* Отступ сверху */
+            right: 20px; /* Отступ справа */
+            z-index: 1001;
+        }
+
+        .burger {
+            position: relative;
+            border: none;
+            background: transparent; /* Фон прозрачный */
+            width: 40px;
+            height: 26px;
+            cursor: pointer; /* Изменение курсора */
+        }
+
+        .burger::before,
+        .burger::after {
+            content: '';
+            left: 0;
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 4px;
+            border-radius: 10px;
+            background: #ffffff;
+        }
+
+        .burger::before {
+            top: 0;
+            box-shadow: 0 11px 0 #000;
+            transition: top .3s, transform .3s;
+        }
+
+        .burger::after {
+            bottom: 0;
+            transition: bottom .3s, transform .3s;
+        }
+
+        .burger.active::before {
+            top: 11px;
+            transform: rotate(45deg);
+            box-shadow: 0 6px 0 rgba(0,0,0,0);
+        }
+
+        .burger.active::after {
+            bottom: 11px;
+            transform: rotate(-45deg);
+        }
+
+        .menu-list {
+            display: none; /* Скрываем меню по умолчанию */
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            background: rgba(0, 0, 0, 0.7); /* Полупрозрачный фон для меню */
+            position: absolute;
+            top: 50px; /* Позиционирование ниже бургер-меню */
+            right: 0;
+            width: 200px; /* Ширина меню */
+            border-radius: 5px;
+            z-index: 1002;
+        }
+
+        .menu-list.active {
+            display: block; /* Показываем меню при активном классе */
+        }
+
+        .menu-item {
+            display: block;
+            padding: 10px 15px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .menu-item:hover {
+            background: #d2b215; /* Подсветка при наведении */
+        }
+
+        @media (max-width: 768px) {
+            .tour-location {
+                width: 100%; /* На малых экранах ширина ячейки с городом - 100% */
+            }
+            .tour-date,
+            .tour-ticket {
+                width: 100%; /* На малых экранах ширина ячеек с датой и кнопкой - 100% */
+                margin: 0; /* Убираем отступы */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="menu">
+    <input type="checkbox" id="burger-checkbox" class="burger-checkbox" hidden>
+    <label for="burger-checkbox" class="burger">
+        <div></div>
+    </label>
+    <ul class="menu-list">
+        <li><a href="http://localhost:8084" class="menu-item">Oxxxymiron</a></li>
+        <li><a href="http://localhost:8084/tours" class="menu-item">Туры</a></li>
+        <li><a href="http://localhost:8084/contact" class="menu-item">Связь</a></li>
+        <li><a href="http://localhost:8084/login" class="menu-item">Зарегистрироваться</a></li>
+    </ul>
+</div>
+
+<!-- Секция с картами туров -->
+<div class="container tour-cards" style="margin-top: 60px;"> <!-- Отступ сверху для смещения вниз -->
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center">Туры</h1>
+            <div class="black-background">
+                <div class="card">
+                    <div class="card-info">
+                        <div class="tour-date">
+                            <div>01</div>
+                            <div>Янв</div>
+                        </div>
+                        <div class="tour-location">
+                            <strong>Москва</strong>
+                            <span>Центр города</span>
+                        </div>
+                        <button class="tour-ticket">билет</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-info">
+                        <div class="tour-date">
+                            <div>02</div>
+                            <div>Фев</div>
+                        </div>
+                        <div class="tour-location">
+                            <strong>Санкт-Петербург</strong>
+                            <span>Эрмитаж</span>
+                        </div>
+                        <button class="tour-ticket">билет</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-info">
+                        <div class="tour-date">
+                            <div>03</div>
+                            <div>Мар</div>
+                        </div>
+                        <div class="tour-location">
+                            <strong>Казань</strong>
+                            <span>Кул Шариф</span>
+                        </div>
+                        <button class="tour-ticket">билет</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-info">
+                        <div class="tour-date">
+                            <div>04</div>
+                            <div>Апр</div>
+                        </div>
+                        <div class="tour-location">
+                            <strong>Владивосток</strong>
+                            <span>Золотой мост</span>
+                        </div>
+                        <button class="tour-ticket">билет</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const burgerCheckbox = document.getElementById('burger-checkbox');
+    const menuList = document.querySelector('.menu-list');
+
+    burgerCheckbox.addEventListener('change', function() {
+        if (burgerCheckbox.checked) {
+            menuList.classList.add('active'); // Добавляем класс активного состояния
+        } else {
+            menuList.classList.remove('active'); // Убираем класс активного состояния
+        }
+    });
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
