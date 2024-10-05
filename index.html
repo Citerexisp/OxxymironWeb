@@ -18,7 +18,7 @@
 
         /* Параллакс фон */
         .parallax-bg {
-            background: url('../resources/static/images/mainback.png') no-repeat center center;
+            background: url('images/mainback.png') no-repeat center center;
             background-size: cover;
             background-attachment: fixed; /* Параллакс-эффект */
             min-height: 100vh;
@@ -280,6 +280,7 @@
 
 
         /* Медиа-запросы для адаптивности */
+        /* Медиа-запросы для адаптивности */
         @media (max-width: 768px) {
             h1 {
                 font-size: 2rem;
@@ -296,7 +297,64 @@
             .navbar {
                 padding: 5px 0;
             }
+
+            .video-container {
+                padding-bottom: 56.25%; /* Соотношение 16:9 */
+                height: 0; /* Высота обнулена для флексбокса */
+                overflow: hidden;
+            }
+
+            .youtube-video h2 {
+                font-size: 1.5rem; /* Уменьшаем размер заголовка для мобильных */
+            }
+
+            .solid-bg {
+                padding: 30px 10px; /* Уменьшаем отступы для мобильных */
+            }
+
+            .carousel-inner {
+                margin: 0; /* Убираем отступы для карусели */
+            }
+
+            .menu {
+                right: 10px; /* Изменение отступа для бургер-меню */
+            }
+
+            .menu-list {
+                width: 180px; /* Уменьшаем ширину меню */
+            }
+
+            .menu-item {
+                font-size: 1rem; /* Уменьшаем размер шрифта для мобильных */
+            }
+
+            footer a {
+                margin: 0 10px; /* Уменьшаем отступы иконок */
+            }
+
+            footer i {
+                font-size: 1.5rem; /* Уменьшаем размер иконок */
+            }
         }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem; /* Еще меньше шрифт для очень маленьких экранов */
+            }
+
+            p {
+                font-size: 0.9rem; /* Уменьшаем текст */
+            }
+
+            .video-container {
+                padding-bottom: 75%; /* Увеличиваем высоту для мобильных */
+            }
+
+            .youtube-video h2 {
+                font-size: 1.2rem; /* Уменьшаем заголовок еще больше */
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -340,13 +398,13 @@
     </div>
 
 
-<!-- Карусель -->
+    <!-- Карусель -->
     <div id="albumCarousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <div class="album">
                     <a href="https://music.yandex.ru/album/33056651" target="_blank">
-                        <img src="../images2/Zuravli.jpg" alt="Обложка альбома" class="d-block img-fluid"/>
+                        <img src="images/Zuravli.jpg" alt="Обложка альбома" class="d-block img-fluid"/>
                         <h3>Журавли</h3>
                     </a>
                 </div>
@@ -355,7 +413,7 @@
             <div class="carousel-item">
                 <div class="album">
                     <a href="https://music.yandex.ru/album/31203434" target="_blank">
-                        <img src="../images2/Mir.png" alt="Обложка альбома" class="d-block img-fluid"/>
+                        <img src="images/Mir.png" alt="Обложка альбома" class="d-block img-fluid"/>
                         <h3>Мир горит</h3>
                     </a>
                 </div>
@@ -364,7 +422,7 @@
             <div class="carousel-item">
                 <div class="album">
                     <a href="https://music.yandex.ru/album/28626101" target="_blank">
-                        <img src="../images2/Semeinii.jpeg" alt="Обложка альбома" class="d-block img-fluid"/>
+                        <img src="images/Semeinii.jpeg" alt="Обложка альбома" class="d-block img-fluid"/>
                         <h3>Семейный альбом</h3>
                     </a>
                 </div>
@@ -373,7 +431,7 @@
             <div class="carousel-item">
                 <div class="album">
                     <a href="https://music.yandex.ru/album/27533353" target="_blank">
-                        <img src="../images2/Daleko.jpeg" alt="Обложка альбома" class="d-block img-fluid"/>
+                        <img src="images/Daleko.jpeg" alt="Обложка альбома" class="d-block img-fluid"/>
                         <h3>Прекрасное Далёко</h3>
                     </a>
                 </div>
