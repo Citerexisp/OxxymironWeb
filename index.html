@@ -20,14 +20,17 @@
         .parallax-bg {
             background: url('images/mainback.png') no-repeat center center;
             background-size: cover;
-            background-attachment: fixed; /* Параллакс-эффект */
-            min-height: 100vh;
+            /* Изменяем background-attachment для мобильных устройств */
+            background-attachment: scroll; /* Для мобильных лучше использовать scroll, чтобы избежать проблем с параллаксом */
+            min-height: 100vh; /* Оставляем минимальную высоту для больших экранов */
+            height: auto; /* Позволяет элементу растягиваться на весь доступный экран */
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
         }
+
 
 
         /* Фиксированная навигационная панель */
@@ -292,6 +295,12 @@
 
             .album img {
                 max-width: 100%; /* На мобильных устройствах изображение будет 100% ширины */
+            }
+            .parallax-bg {
+                background-attachment: scroll; /* Убираем параллакс-эффект на мобильных устройствах */
+                min-height: 100vh; /* Устанавливаем минимальную высоту на мобильных устройствах */
+                height: auto; /* Высота будет автоматически адаптироваться */
+                background-position: center; /* Центрируем фон */
             }
 
             .navbar {
