@@ -20,9 +20,7 @@
         .parallax-bg {
             background: url('images/mainback.png') no-repeat center center;
             background-size: cover;
-            background-attachment: fixed; /* Включаем параллакс для всех экранов */
-            min-height: 100vh; /* Оставляем минимальную высоту для больших экранов */
-            height: auto; /* Позволяет элементу растягиваться на весь доступный экран */
+            min-height: 100vh; /* Высота блока */
             position: relative;
             display: flex;
             justify-content: center;
@@ -298,10 +296,9 @@
             }
             .parallax-bg {
                 background: url('images/mainbackphone.png') no-repeat center center;
-                background-size: cover;
-                min-height: 100vh; /* Явно устанавливаем высоту экрана */
-                background-position: center;
-                border: 1px solid red; /* Временно добавляем границу, чтобы увидеть, что блок загружается */
+                background-size: cover; /* Подгоняем изображение под блок */
+                background-attachment: scroll; /* Убираем фиксированное прикрепление */
+                min-height: 100vh; /* Обеспечиваем высоту */
             }
 
             .navbar {
