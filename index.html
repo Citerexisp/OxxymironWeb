@@ -19,7 +19,7 @@
         /* Параллакс фон */
         .parallax-bg {
             background: url('images/mainback.png') no-repeat center center;
-            background-size: contain;
+            background-size: cover;
             background-attachment: fixed; /* Включаем параллакс для всех экранов */
             min-height: 100vh; /* Оставляем минимальную высоту для больших экранов */
             height: auto; /* Позволяет элементу растягиваться на весь доступный экран */
@@ -298,7 +298,7 @@
             }
             .parallax-bg {
                  /* Убираем параллакс-эффект на мобильных устройствах */
-               
+                background-size: contain;
                 height: auto; /* Высота будет автоматически адаптироваться */
                 background-position: center; /* Центрируем фон */
             }
