@@ -297,10 +297,11 @@
                 max-width: 100%; /* На мобильных устройствах изображение будет 100% ширины */
             }
             .parallax-bg {
-                background: url('images/mainbackphone.PNG') no-repeat center center;
+                background: url('./images/mainbackphone.png') no-repeat center center;
                 background-size: cover;
-                height: auto; /* Высота будет автоматически адаптироваться */
-                background-position: center; /* Центрируем фон */
+                min-height: 100vh; /* Явно устанавливаем высоту экрана */
+                background-position: center;
+                border: 1px solid red; /* Временно добавляем границу, чтобы увидеть, что блок загружается */
             }
 
             .navbar {
