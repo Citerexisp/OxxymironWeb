@@ -20,8 +20,7 @@
         .parallax-bg {
             background: url('images/mainback.png') no-repeat center center;
             background-size: cover;
-            /* Изменяем background-attachment для мобильных устройств */
-            background-attachment: scroll; /* Для мобильных лучше использовать scroll, чтобы избежать проблем с параллаксом */
+            background-attachment: fixed; /* Включаем параллакс для всех экранов */
             min-height: 100vh; /* Оставляем минимальную высоту для больших экранов */
             height: auto; /* Позволяет элементу растягиваться на весь доступный экран */
             position: relative;
@@ -29,7 +28,8 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-        }
+}
+
 
 
 
