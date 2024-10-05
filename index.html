@@ -21,7 +21,7 @@
             background: url('images/mainback.png') no-repeat center center;
             background-size: contain;
             background-attachment: fixed; /* Включаем параллакс для всех экранов */
-            
+            height: 100vh; /* Оставляем минимальную высоту для больших экранов */
             height: auto; /* Позволяет элементу растягиваться на весь доступный экран */
             position: relative;
             display: flex;
@@ -298,7 +298,7 @@
             }
             .parallax-bg {
                  /* Убираем параллакс-эффект на мобильных устройствах */
-                min-height: 100vh; /* Устанавливаем минимальную высоту на мобильных устройствах */
+               
                 height: auto; /* Высота будет автоматически адаптироваться */
                 background-position: center; /* Центрируем фон */
             }
