@@ -299,7 +299,7 @@
             .parallax-bg {
                 background: url('images/mainbackphonezip.png') no-repeat center center;
                 background-size: cover; /* Подгоняем изображение под блок */
-                background-attachment: scroll; /* Убираем фиксированное прикрепление */
+                
                 min-height: 100vh; /* Обеспечиваем высоту */
             }
 
@@ -494,21 +494,7 @@
                 menuList.classList.toggle('active'); // Показываем/скрываем меню
             });
         });
-        function parallaxEffect() {
-        const parallaxElement = document.querySelector('.parallax-bg');
-        const scrollPosition = window.pageYOffset;
-
-        // Высота блока
-        const elementHeight = parallaxElement.offsetHeight;
-
-        // Изменяем только до определенного предела, чтобы фон не сдвигался слишком далеко
-        if (scrollPosition <= elementHeight) {
-            parallaxElement.style.backgroundPositionY = (scrollPosition * 0.5) + 'px';
-        }
-    }
-
-    // Добавляем обработчик прокрутки
-    window.addEventListener('scroll', parallaxEffect);
+        
 
 
     </script>
