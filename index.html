@@ -27,6 +27,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
+            will-change: transform;
         }
 
 
@@ -496,9 +497,14 @@
         function parallaxEffect() {
         const parallaxElement = document.querySelector('.parallax-bg');
         const scrollPosition = window.pageYOffset;
-        
-        // Изменение позиции фона
-        parallaxElement.style.backgroundPositionY = (scrollPosition * 0.5) + 'px';
+
+        // Высота блока
+        const elementHeight = parallaxElement.offsetHeight;
+
+        // Изменяем только до определенного предела, чтобы фон не сдвигался слишком далеко
+        if (scrollPosition <= elementHeight) {
+            parallaxElement.style.backgroundPositionY = (scrollPosition * 0.5) + 'px';
+        }
     }
 
     // Добавляем обработчик прокрутки
