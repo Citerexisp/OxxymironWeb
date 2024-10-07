@@ -493,6 +493,16 @@
                 menuList.classList.toggle('active'); // Показываем/скрываем меню
             });
         });
+        function parallaxEffect() {
+        const parallaxElement = document.querySelector('.parallax-bg');
+        const scrollPosition = window.pageYOffset;
+        
+        // Изменение позиции фона
+        parallaxElement.style.backgroundPositionY = (scrollPosition * 0.5) + 'px';
+    }
+
+    // Добавляем обработчик прокрутки
+    window.addEventListener('scroll', parallaxEffect);
 
 
     </script>
