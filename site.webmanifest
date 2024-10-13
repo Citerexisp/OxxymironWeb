@@ -1,6 +1,7 @@
 {
-  "name": "MyWebSite",
-  "short_name": "MySite",
+  "name": "Oxxxymiron",
+  "short_name": "Oxxxy",
+  "start_url": "/index.html",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
