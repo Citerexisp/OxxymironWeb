@@ -463,6 +463,13 @@
         </a>
     </div>
 
+    <h1>Отзывы пользователей</h1>
+    <form id="feedbackForm">
+        <input type="text" id="name" placeholder="Ваше имя" required>
+        <textarea id="review" placeholder="Ваш отзыв" required></textarea>
+        <button type="submit">Отправить отзыв</button>
+    </form>
+
     <footer>
         <a href="https://t.me/norimyxxxo" target="_blank">
             <i class="fab fa-telegram fa-2x"></i>
@@ -479,6 +486,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.botpress.cloud/webchat/v2.1/inject.js"></script>
     <script src="https://mediafiles.botpress.cloud/b34b0e15-6605-4aa1-ae95-b9f2d9b5e8a2/webchat/v2.1/config.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Инициализация Botpress
@@ -502,6 +511,53 @@
                 menuList.classList.toggle('active'); // Показываем/скрываем меню
             });
         });
+        const firebaseConfig = {
+            apiKey: "ваш_api_key",
+            authDomain: "ваш_project_id.firebaseapp.com",
+            databaseURL: "https://ваш_project_id.firebaseio.com",
+            projectId: "ваш_project_id",
+            storageBucket: "ваш_project_id.appspot.com",
+            messagingSenderId: "ваш_messagingSenderId",
+            appId: "ваш_appId"
+        };
+
+        // Инициализация Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        document.getElementById('feedbackForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const review = document.getElementById('review').value;
+
+            // Запись отзыва в Firebase
+            database.ref('reviews/').push({
+                name: name,
+                review: review
+            }).then(() => {
+                // Отображение нового отзыва
+                const reviewElement = document.createElement('div');
+                reviewElement.innerHTML = `<strong>${name}</strong>: <p>${review}</p>`;
+                document.getElementById('reviewsContainer').appendChild(reviewElement);
+            });
+
+            event.target.reset();
+        });
+
+        // Загрузка существующих отзывов
+        database.ref('reviews/').on('value', function(snapshot) {
+            const reviewsContainer = document.getElementById('reviewsContainer');
+            reviewsContainer.innerHTML = ''; // Очистка контейнера перед обновлением
+
+            snapshot.forEach(function(childSnapshot) {
+                const childData = childSnapshot.val();
+                const reviewElement = document.createElement('div');
+                reviewElement.innerHTML = `<strong>${childData.name}</strong>: <p>${childData.review}</p>`;
+                reviewsContainer.appendChild(reviewElement);
+            });
+        });
+
         // if ('serviceWorker' in navigator) {
         //     window.addEventListener('load', () => {
         //         navigator.serviceWorker.register('/service-worker.js').then(registration => {
