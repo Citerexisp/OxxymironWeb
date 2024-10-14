@@ -35,14 +35,136 @@
             text-decoration: none; /* Убираем подчеркивание */
         }
         .telegram-link:hover {
-            text-decoration: underline; /* Подчеркивание при наведении */
+            text-decoration: #d2b215; /* Подчеркивание при наведении */
         }
         .contact-container h2, .contact-container p {
             color: #000000; /* Устанавливаем черный цвет для основного текста */
         }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+        }
+
+        footer a {
+            color: white;
+            margin: 0 15px;
+        }
+
+        footer a:hover {
+            color: #d2b215;
+        }
+
+        /* Стиль для бургер меню */
+        .menu {
+            position: fixed; /* Фиксированное положение */
+            top: 10px; /* Отступ сверху */
+            right: 20px; /* Отступ справа */
+            z-index: 1001;
+        }
+
+        .burger {
+            position: relative;
+            border: none;
+            background: transparent; /* Фон прозрачный */
+            width: 40px;
+            height: 26px;
+            cursor: pointer; /* Добавлено для изменения курсора */
+        }
+
+        .burger::before,
+        .burger::after {
+            content: '';
+            left: 0;
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 4px;
+            border-radius: 10px;
+            background: #ffffff;
+        }
+
+        .burger::before {
+            top: 0;
+            box-shadow: 0 11px 0 #000;
+            transition: top .3s, transform .3s;
+        }
+
+        .burger::after {
+            bottom: 0;
+            transition: bottom .3s, transform .3s;
+        }
+
+        .burger.active::before {
+            top: 11px;
+            transform: rotate(45deg);
+            box-shadow: 0 6px 0 rgba(0,0,0,0);
+        }
+
+        .burger.active::after {
+            bottom: 11px;
+            transform: rotate(-45deg);
+        }
+
+        .menu-list {
+            display: none; /* Скрываем меню по умолчанию */
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            background: rgba(0, 0, 0, 0.7); /* Полупрозрачный фон для меню */
+            position: absolute;
+            top: 50px; /* Позиционирование ниже бургер-меню */
+            right: 0;
+            width: 200px; /* Ширина меню */
+            border-radius: 5px;
+            z-index: 1002;
+        }
+
+        .menu-list.active {
+            display: block; /* Показываем меню при активном классе */
+        }
+
+        .menu-item {
+            display: block;
+            padding: 10px 15px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .menu-item:hover {
+            color: #d2b215;
+            background: #ffffff; /* Подсветка при наведении */
+            text-decoration: none; /* Убираем подчеркивание при наведении */
+        }
+        .burger div {
+            position: absolute; /* Позиционирование для центральной линии */
+            top: 11px; /* Положение в середине бургер-меню */
+            left: 0;
+            width: 100%;
+            height: 4px; /* Высота центральной линии */
+            background: #ffffff; /* Цвет для центральной линии */
+            border-radius: 10px; /* Радиус для закругления */
+            transition: background .3s; /* Плавный переход при наведении */
+        }
+        .burger.active div {
+            background: rgba(255, 87, 51, 0);
+            display: none;/* Прозрачный при активном состоянии */
+        }
+
     </style>
 </head>
 <body>
+<div class="menu">
+    <input type="checkbox" id="burger-checkbox" class="burger-checkbox" hidden>
+    <label for="burger-checkbox" class="burger">
+        <div></div>
+    </label>
+    <ul class="menu-list">
+        <li><a href="https://citerexisp.github.io/OxxymironWeb/" class="menu-item">Oxxxymiron</a></li>
+        <li><a href="https://citerexisp.github.io/OxxymironWeb/tours" class="menu-item">Туры</a></li>
+        <li><a href="https://citerexisp.github.io/OxxymironWeb/contact" class="menu-item">Связь</a></li>
+    </ul>
+</div>
 <nav class="navbar navbar-expand-lg">
     <div class="container">
         <a class="navbar-brand" href="http://localhost:8084">Oxxxymiron</a>
@@ -63,10 +185,18 @@
 </nav>
 <div class="container contact-container">
     <div>
-        <h2>Свяжитесь с нами</h2>
         <p>Если у вас есть вопросы, вы можете написать нам в Telegram:</p>
         <a href="https://t.me/Cit3r" class="telegram-link" target="_blank">Написать в Telegram</a>
     </div>
 </div>
+
+<footer>
+    <a href="https://t.me/norimyxxxo" target="_blank">
+        <i class="fab fa-telegram fa-2x"></i>
+    </a>
+    <a href="https://music.yandex.ru/artist/249991" target="_blank">
+        <i class="fas fa-music fa-2x"></i>
+    </a>
+</footer>
 </body>
 </html>
