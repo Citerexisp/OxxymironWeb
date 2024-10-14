@@ -2,6 +2,9 @@
 <html lang="ru">
 <head>
 
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+
     <link rel="manifest" crossorigin="use-credentials" href="manifest.json" />
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="shortcut icon" href="/style/favicon.ico" type="image/vnd.microsoft.icon" />
@@ -486,9 +489,11 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.botpress.cloud/webchat/v2.1/inject.js"></script>
     <script src="https://mediafiles.botpress.cloud/b34b0e15-6605-4aa1-ae95-b9f2d9b5e8a2/webchat/v2.1/config.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
-    <script>
+
+    <script type="module">
+
+        ;
+
         document.addEventListener('DOMContentLoaded', () => {
             // Инициализация Botpress
             try {
@@ -511,6 +516,9 @@
                 menuList.classList.toggle('active'); // Показываем/скрываем меню
             });
         });
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+        import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"
         const firebaseConfig = {
             apiKey: "AIzaSyAv_lvL3U7ufjcx48HiIi4Hv_1GoM2ll8Q",
             authDomain: "oxxxyweb.firebaseapp.com",
@@ -522,8 +530,8 @@
         };
 
         // Инициализация Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-        const database = firebase.database();
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
 
         document.getElementById('feedbackForm').addEventListener('submit', function(event) {
             event.preventDefault();
@@ -532,23 +540,24 @@
             const review = document.getElementById('review').value;
 
             // Запись отзыва в Firebase
-            database.ref('reviews/').push({
+            push(ref(database, 'reviews/'), {
                 name: name,
                 review: review
             }).then(() => {
-                // Отображение нового отзыва
                 const reviewElement = document.createElement('div');
                 reviewElement.innerHTML = `<strong>${name}</strong>: <p>${review}</p>`;
                 document.getElementById('reviewsContainer').appendChild(reviewElement);
+            }).catch(error => {
+                console.error("Ошибка записи отзыва:", error);
             });
 
             event.target.reset();
         });
 
         // Загрузка существующих отзывов
-        database.ref('reviews/').on('value', function(snapshot) {
+        onValue(ref(database, 'reviews/'), function(snapshot) {
             const reviewsContainer = document.getElementById('reviewsContainer');
-            reviewsContainer.innerHTML = ''; // Очистка контейнера перед обновлением
+            reviewsContainer.innerHTML = '';
 
             snapshot.forEach(function(childSnapshot) {
                 const childData = childSnapshot.val();
