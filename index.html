@@ -472,6 +472,8 @@
         <textarea id="review" placeholder="Ваш отзыв" required></textarea>
         <button type="submit">Отправить отзыв</button>
     </form>
+    
+    <div id="reviewsContainer"></div>
 
     <footer>
         <a href="https://t.me/norimyxxxo" target="_blank">
@@ -518,7 +520,9 @@
         });
 
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-        import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"
+        import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+
+        // Ваши настройки Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyAv_lvL3U7ufjcx48HiIi4Hv_1GoM2ll8Q",
             authDomain: "oxxxyweb.firebaseapp.com",
@@ -533,6 +537,7 @@
         const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
 
+        // Обработчик отправки формы
         document.getElementById('feedbackForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
@@ -544,6 +549,7 @@
                 name: name,
                 review: review
             }).then(() => {
+                // Отображение нового отзыва в контейнере
                 const reviewElement = document.createElement('div');
                 reviewElement.innerHTML = `<strong>${name}</strong>: <p>${review}</p>`;
                 document.getElementById('reviewsContainer').appendChild(reviewElement);
@@ -551,19 +557,19 @@
                 console.error("Ошибка записи отзыва:", error);
             });
 
-            event.target.reset();
+            event.target.reset(); // Сброс формы
         });
 
         // Загрузка существующих отзывов
         onValue(ref(database, 'reviews/'), function(snapshot) {
             const reviewsContainer = document.getElementById('reviewsContainer');
-            reviewsContainer.innerHTML = '';
+            reviewsContainer.innerHTML = ''; // Очистка контейнера перед обновлением
 
             snapshot.forEach(function(childSnapshot) {
                 const childData = childSnapshot.val();
                 const reviewElement = document.createElement('div');
                 reviewElement.innerHTML = `<strong>${childData.name}</strong>: <p>${childData.review}</p>`;
-                reviewsContainer.appendChild(reviewElement);
+                reviewsContainer.appendChild(reviewElement); // Добавление отзыва в контейнер
             });
         });
 
