@@ -289,6 +289,43 @@
             margin: 0 1px;
             background-color: #FF5733; /* Цвет полос */
         }
+        /* Стиль для формы */
+        #feedbackForm {
+            max-width: 500px; /* Максимальная ширина формы */
+            margin: 0 auto; /* Центрирование формы на странице */
+            padding: 20px; /* Внутренние отступы формы */
+            border: 1px solid #ddd; /* Граница формы */
+            border-radius: 10px; /* Закругленные углы */
+            background-color: #f9f9f9; /* Цвет фона формы */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Тень для формы */
+        }
+
+        /* Стиль для полей ввода */
+        input[type="text"], textarea {
+            width: 100%; /* Ширина полей ввода 100% */
+            padding: 10px; /* Внутренние отступы */
+            margin-bottom: 15px; /* Отступ снизу */
+            border: 1px solid #ccc; /* Цвет границы */
+            border-radius: 5px; /* Закругленные углы */
+            font-size: 1em; /* Размер шрифта */
+        }
+
+        /* Стиль для кнопки отправки */
+        button {
+            background-color: #2F3BA2; /* Цвет фона кнопки */
+            color: white; /* Цвет текста кнопки */
+            border: none; /* Без границы */
+            border-radius: 5px; /* Закругленные углы */
+            padding: 10px 15px; /* Внутренние отступы */
+            font-size: 1em; /* Размер шрифта кнопки */
+            cursor: pointer; /* Указатель курсора при наведении */
+            transition: background-color 0.3s; /* Плавный переход для фона */
+        }
+
+        /* Эффект при наведении на кнопку */
+        button:hover {
+            background-color: #1d2b6f; /* Цвет фона при наведении */
+        }
 
 
 
@@ -466,13 +503,13 @@
         </a>
     </div>
 
-    <h1>Отзывы пользователей</h1>
+    <h1>Оставьте отзыв об альбоме</h1>
     <form id="feedbackForm">
         <input type="text" id="name" placeholder="Ваше имя" required>
         <textarea id="review" placeholder="Ваш отзыв" required></textarea>
         <button type="submit">Отправить отзыв</button>
     </form>
-    
+
     <div id="reviewsContainer"></div>
 
     <footer>
