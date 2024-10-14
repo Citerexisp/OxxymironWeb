@@ -4,24 +4,19 @@
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Контакты</title>
+    <title>О нас</title>
+    <link rel="icon" href="/images/znakkr.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
     <style>
         body {
-            background-color: #f8f9fa; /* Цвет фона страницы */
+            background-color: #0f0f0f; /* Цвет фона страницы */
             font-family: 'Oswald', sans-serif; /* Применяем шрифт Oswald ко всему тексту */
         }
-        .navbar {
-            background-color: #343a40; /* Цвет фона навигационной панели */
-        }
-        .navbar-brand, .nav-link {
-            color: #ffffff; /* Устанавливаем белый цвет текста навигационной панели */
-            transition: color 0.3s; /* Плавный переход цвета */
-        }
-        .navbar-brand:hover, .nav-link:hover {
-            color: #d2b215; /* Изменяем цвет на желтый при наведении */
 
-        }
         .contact-container {
             height: 100vh; /* Занимает всю высоту экрана */
             display: flex;
@@ -31,14 +26,14 @@
         }
         .telegram-link {
             font-size: 1.5rem; /* Размер шрифта для ссылки */
-            color: #000000; /* Цвет ссылки черный */
+            color: #ffffff; /* Цвет ссылки черный */
             text-decoration: none; /* Убираем подчеркивание */
         }
         .telegram-link:hover {
             text-decoration: #d2b215; /* Подчеркивание при наведении */
         }
         .contact-container h2, .contact-container p {
-            color: #000000; /* Устанавливаем черный цвет для основного текста */
+            color: #ffffff; /* Устанавливаем черный цвет для основного текста */
         }
 
         footer {
@@ -162,27 +157,10 @@
     <ul class="menu-list">
         <li><a href="https://citerexisp.github.io/OxxymironWeb/" class="menu-item">Oxxxymiron</a></li>
         <li><a href="https://citerexisp.github.io/OxxymironWeb/tours" class="menu-item">Туры</a></li>
-        <li><a href="https://citerexisp.github.io/OxxymironWeb/contact" class="menu-item">Связь</a></li>
+        <li><a href="https://citerexisp.github.io/OxxymironWeb/contact" class="menu-item">О нас</a></li>
     </ul>
 </div>
-<nav class="navbar navbar-expand-lg">
-    <div class="container">
-        <a class="navbar-brand" href="http://localhost:8084">Oxxxymiron</a>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:8084/tours">Туры</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:8084/contact">Связь</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:8084/login">Зарегистрироваться</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+
 <div class="container contact-container">
     <div>
         <p>Если у вас есть вопросы, вы можете написать нам в Telegram:</p>
@@ -198,5 +176,20 @@
         <i class="fas fa-music fa-2x"></i>
     </a>
 </footer>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    const burgerCheckbox = document.getElementById('burger-checkbox');
+    const menuList = document.querySelector('.menu-list');
+
+    burgerCheckbox.addEventListener('change', function() {
+        if (burgerCheckbox.checked) {
+            menuList.classList.add('active'); // Добавляем класс активного состояния
+        } else {
+            menuList.classList.remove('active'); // Убираем класс активного состояния
+        }
+    });
+</script>
 </body>
 </html>
